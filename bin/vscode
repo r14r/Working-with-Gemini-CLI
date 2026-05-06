@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+unset VSCODE_PORTABLE
+unset VSCODE_PORTABLE_DATA_DIR
+unset VSCODE_PORTABLE_DATA_PATH
+
+ROOT="$PWD"
+PROFILE="${VSCODE_PROFILE:-$(basename "$ROOT")}"
+USR_DIR="${VSCODE_USER_DIR:-$ROOT/.vscode.usr}"
+EXT_DIR="${VSCODE_EXT_DIR:-$ROOT/.vscode.ext}"
+CODE_BIN="${VSCODE_BIN:-/Users/Shared/VSCode/Default/Visual Studio Code - Insiders.app/Contents/Resources/app/bin/code}"
+
+[[ -x "$CODE_BIN" ]] || {
+  echo "❌ VSCode binary not found/executable: $CODE_BIN" >&2
+  echo "Set VSCODE_BIN=/path/to/code" >&2
+  exit 1
+}
+
+mkdir -p "$USR_DIR" "$EXT_DIR"
+
+shopt -s nullglob
+files=( *.code-workspace )
+WORKSPACE_FILE="${files[0]-}"
+TARGET="${1:-${WORKSPACE_FILE:-$ROOT}}"
+
+cat <<INFO
+🚀 Starting VSCode
+----------------------------------------
+📁 Project       : $ROOT
+👤 Profile       : $PROFILE
+⚙️ Mode          : LOCAL
+📁 User Data Dir : $USR_DIR
+🧩 Extensions Dir: $EXT_DIR
+🔐 Password Store: basic
+🧠 Secret Storage: in-memory
+ℹ️ Opening       : $TARGET
+INFO
+
+exec "$CODE_BIN" \
+  --new-window \
+  --password-store=basic \
+  --use-inmemory-secretstorage \
+  --disable-updates \
+  --disable-telemetry \
+  --user-data-dir "$USR_DIR" \
+  --extensions-dir "$EXT_DIR" \
+  --profile "$PROFILE" \
+  "$TARGET"

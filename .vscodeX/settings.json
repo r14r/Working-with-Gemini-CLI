@@ -1,0 +1,16 @@
+{
+  "github.gitAuthentication": false,
+  "git.confirmSync": false,
+  "telemetry.telemetryLevel": "off",
+  "update.mode": "none",
+  "extensions.autoUpdate": false,
+  "extensions.autoCheckUpdates": false,
+  "workbench.startupEditor": "none",
+  "workbench.welcomePage.walkthroughs.openOnInstall": false,
+  "security.workspace.trust.enabled": false,
+  "security.workspace.trust.startupPrompt": "never",
+  "chat.commandCenter.enabled": false,
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true
+}

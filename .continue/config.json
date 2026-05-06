@@ -1,0 +1,33 @@
+{
+  "models": [
+    {
+      "title": "Qwen Coder Local",
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b"
+    },
+    {
+      "title": "Fast Local",
+      "provider": "ollama",
+      "model": "llama3.2:3b"
+    },
+    {
+      "title": "DeepSeek Coder",
+      "provider": "ollama",
+      "model": "deepseek-coder:6.7b"
+    }
+  ],
+  "defaultModel": "Qwen Coder Local",
+  "tabAutocompleteModel": {
+    "title": "Fast Local",
+    "provider": "ollama",
+    "model": "llama3.2:3b"
+  },
+  "contextProviders": [
+    { "name": "code" },
+    { "name": "docs" },
+    { "name": "diff" },
+    { "name": "terminal" },
+    { "name": "problems" },
+    { "name": "folder" }
+  ]
+}

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MODEL="${AI_MODEL:-qwen2.5-coder:7b}"
+DIFF="$(git diff --staged)"
+
+if [[ -z "$DIFF" ]]; then
+  echo "No staged changes."
+  echo "Run: git add ."
+  exit 1
+fi
+
+ollama run "$MODEL" <<PROMPT_EOF
+Generate a concise conventional commit message for this diff.
+
+Format:
+type(scope): short summary
+
+Then add 3 bullet points.
+
+Diff:
+$DIFF
+PROMPT_EOF

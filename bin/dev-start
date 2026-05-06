@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🚀 Starting local AI dev environment"
+
+if ! command -v ollama >/dev/null 2>&1; then
+  echo "⚠️ Ollama not found. Install with: brew install ollama"
+else
+  if ! pgrep -f "ollama serve" >/dev/null 2>&1; then
+    echo "🧠 Starting Ollama"
+    nohup ollama serve > .ollama.log 2>&1 &
+    sleep 2
+  else
+    echo "✅ Ollama already running"
+  fi
+  echo "📦 Installed Ollama models:"
+  ollama list || true
+fi
+
+echo "🧩 Starting VSCode"
+exec ./bin/vscode

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(pwd)"
+export GEMINI_CONFIG_DIR="$ROOT/.gemini"
+export GEMINI_CLI_HOME="$ROOT/.gemini"
+
+if [[ -f "$ROOT/.gemini/.env" ]]; then
+  set -a
+  source "$ROOT/.gemini/.env"
+  set +a
+fi
+
+if [[ $# -eq 0 ]]; then
+  echo "Usage: ./bin/gemini-task chat"
+  echo "Usage: ./bin/gemini-task \"plan a refactor for this project\""
+  exit 1
+fi
+
+gemini "$@"

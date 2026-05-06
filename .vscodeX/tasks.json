@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "AI: Review Changes",
+      "type": "shell",
+      "command": "./bin/ai-review",
+      "problemMatcher": []
+    },
+    {
+      "label": "AI: Commit Message",
+      "type": "shell",
+      "command": "./bin/ai-commit",
+      "problemMatcher": []
+    },
+    {
+      "label": "Ollama: List Models",
+      "type": "shell",
+      "command": "ollama list",
+      "problemMatcher": []
+    },
+    {
+      "label": "Gemini: Start",
+      "type": "shell",
+      "command": "./bin/gemini-task chat",
+      "problemMatcher": []
+    }
+  ]
+}

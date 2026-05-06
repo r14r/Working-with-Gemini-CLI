@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MODEL="${AI_MODEL:-qwen2.5-coder:7b}"
+DIFF="$(git diff --staged)"
+
+if [[ -z "$DIFF" ]]; then
+  DIFF="$(git diff)"
+fi
+
+if [[ -z "$DIFF" ]]; then
+  echo "No changes to review."
+  exit 0
+fi
+
+ollama run "$MODEL" <<PROMPT_EOF
+Review this git diff.
+
+Focus on:
+- bugs
+- security problems
+- architecture issues
+- missing tests
+- readability
+- unnecessary complexity
+
+Return:
+1. Critical issues
+2. Suggestions
+3. Improved patch ideas
+
+Diff:
+$DIFF
+PROMPT_EOF

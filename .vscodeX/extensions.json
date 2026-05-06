@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "continue.continue",
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "ms-azuretools.vscode-docker",
+    "tamasfe.even-better-toml",
+    "redhat.vscode-yaml"
+  ],
+  "unwantedRecommendations": [
+    "github.copilot",
+    "github.copilot-chat",
+    "github.vscode-pull-request-github"
+  ]
+}

@@ -1,0 +1,26 @@
+# VSCode isolated runtime
+.vscode.usr/
+.vscode.ext/
+
+# Gemini secrets
+.gemini/.env
+
+# Logs
+*.log
+.ollama.log
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Node/Vue
+node_modules/
+dist/
+build/
+
+# Env
+.env
+.env.local

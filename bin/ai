@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MODEL="${AI_MODEL:-qwen2.5-coder:7b}"
+
+if [[ $# -eq 0 ]]; then
+  echo "Usage:"
+  echo "  ./bin/ai \"your prompt\""
+  echo "  cat file.py | ./bin/ai \"review this\""
+  exit 1
+fi
+
+PROMPT="$*"
+STDIN_CONTENT=""
+
+if [ ! -t 0 ]; then
+  STDIN_CONTENT="$(cat)"
+fi
+
+ollama run "$MODEL" <<PROMPT_EOF
+$PROMPT
+
+Context:
+$STDIN_CONTENT
+PROMPT_EOF
