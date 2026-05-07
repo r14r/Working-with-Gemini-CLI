@@ -24,3 +24,5 @@ build/
 # Env
 .env
 .env.local
+linedance_app/
+flutter_app/
